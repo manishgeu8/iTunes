@@ -1,43 +1,33 @@
 # iTunes
 1. Activity
-  a. Main Activity
-     binding.viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
-    i) ViewPager
-    ii) ViewPagerAdapter
-  b. Video Info Activity
-    i) fun getImageGlide(imgItem: ImageView, strImgPath: String) 
-      To set the image
-    ii) resultsItem = gson.fromJson(intent.getStringExtra("videoInfo"), ResultsItem::class.java)
-      To display video info and get the data from the video fragment
+	1. Main Activity : binding.viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
+		1. ViewPager
+		2. ViewPagerAdapter
+	2. Video Info Activity
+		1. fun getImageGlide(imgItem: ImageView, strImgPath: String) : To set the image
+		2. resultsItem = gson.fromJson(intent.getStringExtra("videoInfo"), ResultsItem::class.java) : To display video info and get the data from the video fragment
       
 2. Fragments 
-  a. Video Fragment
-    i) videoViewModel.getSongsList()
-      fun to get video song list from the api
-    ii) videoViewModel.songsListResponse.observe(viewLifecycleOwner, mDataObserver)
-      Observe data from the videoViewModel 
-    iii) binding.recyclerViewVideos.adapter = result.response?.results?.let {VideoAdapter(requireContext(), it,videoInterface) }
-      Set list of songs in UI with VideoAdapter in recyclerView
-     iv) override fun videoInfo(video: ResultsItem) 
-       Function videoinfo will save the clicked video in room database and send the clicked video info to videoInfoActivity.
- 
-  b. Video History Fragment
-    i) videoHistoryViewModel.browsedHistoryResponse.observe(viewLifecycleOwner,mDataObserver)
-      Observe data from the videoHistoryViewModel
-    ii) videoHistoryViewModel.getSongsList()
-      get Video songs history from the database.
-      
+	1. Video Fragment
+		1. videoViewModel.getSongsList() : fun to get video song list from the api
+		2. videoViewModel.songsListResponse.observe(viewLifecycleOwner, mDataObserver) : Observe data from the videoViewModel 
+		3. binding.recyclerViewVideos.adapter = result.response?.results?.let {VideoAdapter(requireContext(), it,videoInterface) } : Set list of songs in UI with VideoAdapter in recyclerView
+		4. override fun videoInfo(video: ResultsItem) : Function videoinfo will save the clicked video in room database and send the clicked video info to videoInfoActivity.
+	2. Video History Fragment
+		1. videoHistoryViewModel.browsedHistoryResponse.observe(viewLifecycleOwner,mDataObserver) : Observe data from the videoHistoryViewModel
+		2. videoHistoryViewModel.getSongsList() : get Video songs history from the database.
+
 3. Database 
-  a. Room database used
-  b. Database name: String = "browsed_songs_db"
-  c. data class BrowsedSongsEntity : tableName = "browsed_songs"
+	1. Room database used
+	2. Database name: String = "browsed_songs_db"
+	3. data class BrowsedSongsEntity : tableName = "browsed_songs"
   
 4. Dependencies
-  a. Kotlin dependencies
-  b. Hilt dependencies
-  c. Androidx.lifecycle
-  d. Kotlin Coroutines
-  e. Retrofit
-  f. Kotlinx-serialization
-  g. Glide
-  h. Room database
+	1. Kotlin dependencies
+	2. Hilt dependencies
+	3. Androidx.lifecycle
+	4. Kotlin Coroutines
+	5. Retrofit
+	6. Kotlinx-serialization
+	7. Glide
+	8. Room database
